@@ -1,19 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Product } from 'src/app/domains/shared/models/product.model';
+import { ReversePipe } from '@shared/pipes/reverse.pipe';
+import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReversePipe, TimeAgoPipe,RouterLinkWithHref],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
   //EL uso del required garantiza el funcionamiendo del componente dinamico,
 // si no cumple con un requerired podemos capturar el error
-@Input({required: true}) img: string = '';
-@Input({required: true}) price: number = 0;
-@Input({required: true}) title: string = '';
+@Input({required: true}) product! : Product;
 
 
 
@@ -22,7 +24,7 @@ export class ProductComponent {
 
 addToCartHandler(){
   console.log(' DESDE el HIJO:>> ' );
-  this.addToCard.emit( 'soy el emit que pedo');
+  this.addToCard.emit(this.product);
 }
 
 

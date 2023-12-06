@@ -1,9 +1,9 @@
-<p>
-  <input type="number" [value]="duration()" (change)="changeDuration($event)"  >
-</p>
-<p>
-  <input type="text" [value]="message()" (change)="changeMessage($event)"  >
-</p>
-<p>
-  <app-counter [duration]="duration()" [message]="message()" />
-</p>
+  <h1 class="text-lg font-bold" >Nosotros</h1>
+  <p class="text-xs" >Lorem ipsum dolor sit, <span light >amet consectetur adipisicing elit</span>.
+    Quo sapiente, ab quam, reiciendis inventore facilis porro quos velit error esse perferendis
+     repellendus ipsum voluptate labore ipsa illo. Delectus, sed! Eum?</p>
+  <p class="text-sm" >Numero de clientes <app-counter [duration]="duration()" [message]="message()" /></p>
+  <div class="">
+    <app-wave-audio audioUrl="assets/audio.mp3" />
+  </div>
+

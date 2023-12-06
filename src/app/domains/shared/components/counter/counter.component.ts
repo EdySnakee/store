@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 export class CounterComponent {
   @Input({required:true}) duration = 0;
   @Input({required:true}) message = '';
+  counter = signal(0);
+  refcounter: number | undefined;
 
 
   constructor() {
@@ -31,6 +33,9 @@ export class CounterComponent {
   //SE EJECUTA UNA VEZ DESPUES DEL RENDER
   ngOnInit(){
     console.log(' :>> OnInit ', );
+    this.refcounter = window.setInterval(()=>{
+      this.counter.update(estadoPrevio => estadoPrevio +1)
+    },1000)
   }
 
   //SE EJECUTA DESPÚES DEL RENDER Y EL ONiNIT
@@ -42,6 +47,7 @@ export class CounterComponent {
   //CUANDO SE DESTRUYE EL COMPONENTE
   ngOnDestroy(){
     console.log(' :>> Destroy ', );
+    window.clearInterval(this.refcounter);
   }
 
 
