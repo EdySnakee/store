@@ -14,8 +14,12 @@ export class ProductService {
   constructor() { }
 
 
-  getProducts(){
-    return this.http.get<Product[]>(this.url);
+  getProducts(category_id?:string){
+    const url = new URL(this.url)
+    if(category_id){
+      url.searchParams.set('categoryId', category_id)
+    }
+    return this.http.get<Product[]>(url.toString());
   }
 
   getOne(id:string){
